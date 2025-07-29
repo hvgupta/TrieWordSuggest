@@ -1,5 +1,6 @@
 mod node;
 mod suggest;
+mod key_dist;
 
 use node::TrieNode;
 
