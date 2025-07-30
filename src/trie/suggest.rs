@@ -31,7 +31,7 @@ impl Trie {
                 ));
             }
 
-            if dist - (word.len() as u8) > self.max_word_diff {
+            if dist > self.max_word_diff + word.len() as u8 {
                 continue; // Skip if distance exceeds max allowed
             }
 
