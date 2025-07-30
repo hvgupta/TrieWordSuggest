@@ -6,3 +6,4 @@ edition = "2024"
 [dependencies]
 lazy_static = "1.4"
 priority-queue = "2.5.0"
+regex = "1.11.1"
