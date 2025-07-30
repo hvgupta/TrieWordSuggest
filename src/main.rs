@@ -1,8 +1,8 @@
 mod words_reader;
 mod trie;
 
+use words_reader::WordIterator;
+
 fn main() {
-
-
-    println!("Hello, world!");
+    let word_reader = WordIterator::new("./data/words.txt");
 }
