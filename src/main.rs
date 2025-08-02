@@ -22,11 +22,10 @@ fn main() {
     for result in word_reader {
         match result {
             Ok(word) => {
-                if WORD_REGEX.is_match(&word) {
-                    trie.insert(&word);
-                } else {
-                    eprintln!("Invalid word found: {}", word);
+                if !WORD_REGEX.is_match(&word) {
+                    continue;
                 }
+                trie.insert(&word);
             }
             Err(_) => {
                 continue;
@@ -37,6 +36,6 @@ fn main() {
     let found = trie.find("example");
     println!("Word 'example' found: {}", found);
 
-    let closest_words = trie.suggest("profide", 3);
-    println!("Suggestions for 'exampl': {:?}", closest_words);
+    let closest_words = trie.suggest("spple", 3);
+    println!("Suggestions for 'epple': {:?}", closest_words);
 }

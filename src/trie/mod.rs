@@ -7,7 +7,7 @@ use node::TrieNode;
 #[derive(Debug)]
 pub struct Trie {
     root: TrieNode,
-    max_word_diff: i8,
+    max_word_diff: u8,
 }
 impl Trie {
     pub fn new() -> Self {
@@ -17,7 +17,7 @@ impl Trie {
         }
     }
 
-    pub fn set_max_word_diff(&mut self, diff: i8) {
+    pub fn set_max_word_diff(&mut self, diff: u8) {
         self.max_word_diff = diff;
     }
 
