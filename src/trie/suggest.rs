@@ -25,7 +25,7 @@ impl Trie {
                 // If the key matches the current character in the word
                 dfs.push((
                     matched_child,
-                    current_word.clone() + &key.to_string(),
+                    current_word.clone() + &matched_child.letter.to_string(),
                     index + 1,
                     dist - 1,
                 ));
@@ -67,7 +67,7 @@ impl Trie {
         dfs.push((&self.root, String::new(), 0, len as u8));
 
         while let Some((node, current_word, index, dist)) = dfs.pop() {
-            println!("Current word: {}, Index: {}, Dist: {}", current_word, index, dist);
+            // println!("Current word: {}, Index: {}, Dist: {}", current_word, index, dist);
 
             if current_word == word {
                 return vec![current_word]; // If the current word matches the input word, return it

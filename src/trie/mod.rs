@@ -17,9 +17,9 @@ impl Trie {
         }
     }
 
-    pub fn set_max_word_diff(&mut self, diff: u8) {
-        self.max_word_diff = diff;
-    }
+    // pub fn set_max_word_diff(&mut self, diff: u8) {
+    //     self.max_word_diff = diff;
+    // }
 
     pub fn insert(&mut self, word: &str) {
         let mut cur_node = &mut self.root;
