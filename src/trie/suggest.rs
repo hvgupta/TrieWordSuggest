@@ -20,11 +20,6 @@ impl Trie {
                 Some(c) => c,
                 None => continue, // If index is out of bounds, skip
             };
-            let matched_child = node.children.get(&index_char);
-            if let Some(child) = matched_child {
-                let next_word = current_word.clone() + &child.letter.to_string();
-                dfs.push((child, next_word.clone(), index + 1, dist - 1));
-            }
 
             if dist > self.max_word_diff + word.len() as i8 || dist < -self.max_word_diff {
                 continue; // Skip if distance exceeds max allowed
@@ -40,12 +35,23 @@ impl Trie {
                     Some(child) => child,
                     None => continue, // If no child matches, skip
                 };
-                dfs.push((
-                    matched_child,
-                    current_word.clone() + &matched_child.letter.to_string(),
-                    index + 1,
-                    dist + 1,
-                ));
+                if key == index_char {
+                    // If the key matches the current character in the word
+                    dfs.push((
+                        matched_child,
+                        current_word.clone() + &key.to_string(),
+                        index + 1,
+                        dist - 1,
+                    ));
+                } else {
+                    // If the key is a close match, increase distance
+                    dfs.push((
+                        matched_child,
+                        current_word.clone() + &key.to_string(),
+                        index + 1,
+                        dist + 1,
+                    ));
+                }
             }
         }
 
@@ -54,7 +60,7 @@ impl Trie {
             Some((word, Reverse(dist))) => (word, dist),
             None => return suggested_words,
         };
-        
+
         if smallest_dist > max_dist {
             return suggested_words; // If the smallest distance is greater than max_dist, return empty
         }
@@ -62,7 +68,7 @@ impl Trie {
         suggested_words.push(word);
 
         while let Some((word, Reverse(dist))) = top_queue.pop() {
-            if  dist > max_dist{
+            if dist > max_dist {
                 break; // Stop if we reach a word with a different distance
             }
             suggested_words.push(word);

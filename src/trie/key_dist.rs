@@ -48,9 +48,6 @@ pub fn get_keywords_at_dist(letter: &char, dist: &u8) -> Vec<char> {
     };
 
     for (key, other_key_coord) in DIST_MATRIX.iter() {
-        if key == letter {
-            continue; // Skip the current letter
-        }
         let row_diff = (cur_letter_coord[0] as i32 - other_key_coord[0] as i32).abs() as u8;
         let col_diff = (cur_letter_coord[1] as i32 - other_key_coord[1] as i32).abs() as u8;
         if row_diff + col_diff <= *dist {
